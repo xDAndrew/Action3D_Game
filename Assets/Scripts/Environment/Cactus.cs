@@ -38,7 +38,8 @@ namespace Environment
                 _thingsToDamage.Add(other.gameObject.GetComponent<IDamageable>());
             } 
         }
-
+        
+        // Stop attack
         private void OnCollisionExit(Collision other)
         {
             if (other.gameObject.GetComponent<IDamageable>() is not null)
