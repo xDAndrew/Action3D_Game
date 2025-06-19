@@ -1,0 +1,107 @@
+####################################
+# Unity
+####################################
+
+# Игнорировать системные каталоги Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Uu]serSettings/
+Assets/StreamingAssets/aa.meta
+
+# Rider
+.idea/
+*.sln.iml
+
+# JetBrains Rider generated
+.vscode/
+*.sln
+*.csproj
+*.pidb
+*.suo
+*.user
+*.userprefs
+*.unityproj
+*.booproj
+*.tmproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.DS_Store
+
+# Auto-generated VS Code settings
+.vscode/
+
+# Auto-generated Unity package cache
+Packages/manifest.json
+Packages/packages-lock.json
+
+# Logs
+*.log
+*.log-prev.log
+
+# Layouts, настройки окна
+*.dwt
+
+# Shader compiler logs
+shadercompiler*
+
+# Crash dumps
+*.dmp
+
+# Android/Gradle
+.gradle/
+*.apk
+*.aar
+*.jks
+*.keystore
+*.dex
+*.class
+
+# iOS/Xcode
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+*.pbxuser
+
+# MacOS системные файлы
+.DS_Store
+
+# Linux system files
+.directory
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# Performance Testing
+Assets/Resources/PerformanceTestRun*.json
+Assets/Resources/PerformanceTestRun*.json.meta
+
+# Cache
+.cache/
+*.ilk
+*.ipch
+*.aps
+*.obj
+*.pch
+
+# Archivy
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Build output (если сохраняешь билды в git-дереве)
+build/
+Build/
+Builds/
