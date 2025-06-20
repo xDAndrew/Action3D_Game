@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4937870842699378919}
   - component: {fileID: 4822227956899022851}
   m_Layer: 5
-  m_Name: EquepLabel
+  m_Name: EquipLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -20,3 +20,5 @@ MonoBehaviour:
   prefab: {fileID: 8800258307543639240, guid: 17197b910619340469d5b1fbe3830acb, type: 3}
   stackable: 0
   maxStackAmount: 0
+  ApplyEffects: []
+  equipmentPrefab: {fileID: 1990367445188676194, guid: 7e3cf6a9832ac8a4b8803c5fe65ed253, type: 3}

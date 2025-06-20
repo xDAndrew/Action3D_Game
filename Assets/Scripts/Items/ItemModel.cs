@@ -30,6 +30,8 @@ namespace Items
 
         [Header("Effect")] 
         public List<ApplyEffect> ApplyEffects;
-        public int example;
+        
+        [Header("Equipment")]
+        public GameObject equipmentPrefab;
     }
 }

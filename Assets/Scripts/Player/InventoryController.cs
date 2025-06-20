@@ -22,17 +22,22 @@ namespace Player
         private List<ItemSlot> slots = new(12);
 
         private GameObject _slotsGameObject;
-        
+
         private TextMeshProUGUI _itemNameText;
         private TextMeshProUGUI _itemDescriptionText;
 
         private Transform _equipBtn;
+        private TextMeshProUGUI _equipBtnText;
+        
         private Transform _useBtn;
         private Transform _dropBtn;
 
         private IAppliable _needs;
-        
+
         private ItemSlot _currentSlot;
+
+        private EquipManager _equipManager;
+        private string _currentEquipSlotId;
 
         private void Start()
         {
@@ -44,15 +49,17 @@ namespace Player
 
             _useBtn = FindRecursive(inventory.transform, "UseBtn");
             _useBtn.GetComponent<ClickableImage>().onLeftClick.AddListener(OnUseBtnClick);
-            
+
             _equipBtn = FindRecursive(inventory.transform, "EquipButton");
-            //_UseBtn.onLeftClick.AddListener(OnDropBtnClick);
-            
+            _equipBtnText = FindRecursive(_equipBtn.transform, "EquipLabel").GetComponent<TextMeshProUGUI>();
+            _equipBtn.GetComponent<ClickableImage>().onLeftClick.AddListener(OnEquipBtnClick);
+
             _dropBtn = FindRecursive(inventory.transform, "DropButton");
             _dropBtn.GetComponent<ClickableImage>().onLeftClick.AddListener(OnDropBtnClick);
 
+            _equipManager = GetComponent<EquipManager>();
             _needs = GetComponent<IAppliable>();
-            
+
             inventoryCanvas.gameObject.SetActive(false);
             _slotsGameObject = inventory.transform.Find("Slots").gameObject;
 
@@ -84,8 +91,9 @@ namespace Player
 
         public bool TryPickUpItem(ItemModel item)
         {
-            var emptySlot = slots.FirstOrDefault(x => x.GetItem()?.id == item.id && x.GetAmount() < x.GetItem().maxStackAmount)
-                            ?? slots.FirstOrDefault(x => x.GetItem() is null);
+            var emptySlot =
+                slots.FirstOrDefault(x => x.GetItem()?.id == item.id && x.GetAmount() < x.GetItem().maxStackAmount)
+                ?? slots.FirstOrDefault(x => x.GetItem() is null);
 
             if (emptySlot is null)
             {
@@ -134,7 +142,8 @@ namespace Player
         private void Update()
         {
             _itemNameText.text = _currentSlot?.GetItem() is not null ? _currentSlot.GetItem().name : string.Empty;
-            _itemDescriptionText.text = _currentSlot?.GetItem() is not null ? _currentSlot.GetItem().description : string.Empty;
+            _itemDescriptionText.text =
+                _currentSlot?.GetItem() is not null ? _currentSlot.GetItem().description : string.Empty;
 
             if (_currentSlot is not null)
             {
@@ -150,6 +159,7 @@ namespace Player
                         case ItemType.Equipment:
                             _useBtn.gameObject.SetActive(false);
                             _equipBtn.gameObject.SetActive(true);
+                            _equipBtnText.text = _currentEquipSlotId == _currentSlot.Id ? "Unequip" : "Equip";
                             break;
                         case ItemType.Consumable:
                             _useBtn.gameObject.SetActive(true);
@@ -174,30 +184,55 @@ namespace Player
 
         private void OnDropBtnClick()
         {
-            if (_currentSlot?.GetItem() is not null)
-            {
-                var spawnOffset = transform.forward * 1.0f + transform.up * 1f;
-                var spawnPosition = transform.position + spawnOffset;
-                
-                var obj = Instantiate(_currentSlot.GetItem().prefab, spawnPosition, Quaternion.identity, null);
-                var rb = obj.GetComponent<Rigidbody>();
-                rb?.AddForce((transform.forward + transform.up * 0.2f) * 10f, ForceMode.Impulse);
+            if (_currentSlot?.GetItem() is null) return;
+            
+            var spawnOffset = transform.forward * 1.0f + transform.up * 1f;
+            var spawnPosition = transform.position + spawnOffset;
 
-                _currentSlot.SetAmount(-1);
+            var obj = Instantiate(_currentSlot.GetItem().prefab, spawnPosition, Quaternion.identity, null);
+            var rb = obj.GetComponent<Rigidbody>();
+            rb?.AddForce((transform.forward + transform.up * 0.2f) * 10f, ForceMode.Impulse);
+
+            if (_currentSlot.Id == _currentEquipSlotId)
+            {
+                _equipManager.Unequip();
+                _currentEquipSlotId = null;
+                Debug.Log($"Уронил {_currentEquipSlotId}");
             }
+            
+            _currentSlot.SetAmount(-1);
         }
 
         private void OnUseBtnClick()
         {
-            if (_currentSlot?.GetItem() is not null)
+            if (_currentSlot?.GetItem() is null) return;
+            
+            var item = _currentSlot.GetItem();
+            foreach (var effect in item.ApplyEffects)
             {
-                var item = _currentSlot.GetItem();
-                foreach (var effect in item.ApplyEffects)
-                {
-                    _needs.Apply(effect);
-                }
+                _needs.Apply(effect);
+            }
+
+            _currentSlot.SetAmount(-1);
+        }
+
+        private void OnEquipBtnClick()
+        {
+            if (_currentSlot?.GetItem() is null) return;
+
+            if (_currentEquipSlotId == _currentSlot.Id)
+            {
+                _equipManager.Unequip();
+                _currentEquipSlotId = null;
                 
-                _currentSlot.SetAmount(-1);
+                Debug.Log($"Снял {_currentEquipSlotId}");
+            }
+            else
+            {
+                _equipManager.Equip(_currentSlot.GetItem());
+                _currentEquipSlotId = _currentSlot.Id;
+                
+                Debug.Log($"Одел {_currentEquipSlotId}");
             }
         }
     }
