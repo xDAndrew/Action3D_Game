@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Items.Types;
 using Player.Models;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Items
 {
@@ -23,7 +22,7 @@ namespace Items
         public bool stackable;
         public int maxStackAmount;
 
-        [Header("Effect")] 
+        [Header("Effect")]
         public List<ApplyEffect> applyEffects;
         
         [Header("Equipment")]

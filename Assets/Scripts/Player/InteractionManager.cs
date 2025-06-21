@@ -1,29 +1,25 @@
 using Items.Interfaces;
-using Player.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Items
+namespace Player
 {
     public class InteractionManager : MonoBehaviour
     {
         public float interactionDistance;
         public float checkRate;
-        public LayerMask layerMask;
         public TextMeshProUGUI promtText;
+        public LayerMask layerMask;
         
         private GameObject _curInteractGameObject;
         private IInteractable _curInteractable;
         private float _lastCheckTime;
         private Camera _camera;
-
-        private IInventoryController _inventoryController;
         
         private void Start()
         {
             _camera = Camera.main;
-            _inventoryController = GetComponent<IInventoryController>();
         }
 
         private void Update()
@@ -38,8 +34,10 @@ namespace Items
                     if (hit.collider.gameObject != _curInteractGameObject)
                     {
                         _curInteractGameObject = hit.collider.gameObject;
+                        
                         // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
                         _curInteractable = _curInteractGameObject.GetComponent<IInteractable>();
+                        
                         SetPromtText();
                     }
                 }
@@ -55,19 +53,14 @@ namespace Items
         private void SetPromtText()
         {
             promtText.gameObject.SetActive(true);
-            promtText.text = $"Press <b>[E]</b> take {_curInteractGameObject.name}";
+            promtText.text = $"{_curInteractable.GetInteractionPromt()}";
         }
 
         public void OnInteractInput(InputAction.CallbackContext context)
         {
-            Debug.Log("OnInteractInput");
             if (context.phase == InputActionPhase.Started && _curInteractable is not null)
             {
-                var isPickUp = _inventoryController.TryPickUpItem(_curInteractable.GetItem());
-                if (isPickUp)
-                {
-                    _curInteractable.OnInteract();
-                }
+                _curInteractable.OnInteract(gameObject);
             }
         }
     }
