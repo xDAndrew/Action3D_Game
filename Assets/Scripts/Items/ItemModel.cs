@@ -1,17 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Items.Types;
 using Player.Models;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Items
 {
-    public enum ItemType
-    {
-        Resource,
-        Equipment,
-        Consumable
-    }
-    
     [CreateAssetMenu(fileName = "ItemModel", menuName = "Scriptable Objects/ItemModel")]
     public class ItemModel : ScriptableObject
     {
@@ -29,7 +24,7 @@ namespace Items
         public int maxStackAmount;
 
         [Header("Effect")] 
-        public List<ApplyEffect> ApplyEffects;
+        public List<ApplyEffect> applyEffects;
         
         [Header("Equipment")]
         public GameObject equipmentPrefab;

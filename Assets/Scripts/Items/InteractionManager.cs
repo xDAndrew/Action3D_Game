@@ -1,3 +1,4 @@
+using Items.Interfaces;
 using Player.Interfaces;
 using TMPro;
 using UnityEngine;
@@ -69,14 +70,5 @@ namespace Items
                 }
             }
         }
-    }
-    
-    public interface IInteractable
-    {
-        string GetInteractionPromt();
-    
-        ItemModel GetItem();
-        
-        void OnInteract();
     }
 }

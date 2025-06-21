@@ -1,3 +1,4 @@
+using Items.Interfaces;
 using UnityEngine;
 
 namespace Items

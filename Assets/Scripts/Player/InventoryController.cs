@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Items;
+using Items.Types;
 using Player.Interfaces;
 using TMPro;
 using UI;
@@ -208,7 +209,7 @@ namespace Player
             if (_currentSlot?.GetItem() is null) return;
             
             var item = _currentSlot.GetItem();
-            foreach (var effect in item.ApplyEffects)
+            foreach (var effect in item.applyEffects)
             {
                 _needs.Apply(effect);
             }
