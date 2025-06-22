@@ -4,6 +4,6 @@ namespace Player.Interfaces
 {
     public interface IInventoryController
     {
-        bool TryPickUpItem(ItemModel item);
+        bool TryPickUpItem(PickUpModel pickUp);
     }
 }

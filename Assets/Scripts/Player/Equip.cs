@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class Equip : MonoBehaviour
+namespace Player
 {
+    public class Equip : MonoBehaviour
+    {
+    }
 }

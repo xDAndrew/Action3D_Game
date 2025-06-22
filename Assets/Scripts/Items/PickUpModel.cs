@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace Items
 {
-    [CreateAssetMenu(fileName = "ItemModel", menuName = "Scriptable Objects/ItemModel")]
-    public class ItemModel : ScriptableObject
+    [CreateAssetMenu(fileName = "PickUpModel", menuName = "Scriptable Objects/PickUpModel")]
+    public class PickUpModel : ScriptableObject
     {
-        [Header("Information")] 
+        [Header("Information")]
         public string id = Guid.NewGuid().ToString();
         public string displayName;
         public string description;

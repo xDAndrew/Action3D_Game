@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4937870842699378919}
   - component: {fileID: 4822227956899022851}
   m_Layer: 5
-  m_Name: EquipLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 7065726355342387980}
   - component: {fileID: 7676694696239204405}
   m_Layer: 5
-  m_Name: DropLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 7800587913483935726}
   - component: {fileID: 2867674782144201961}
   m_Layer: 5
-  m_Name: EquipButton
+  m_Name: EquipBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,6 +898,7 @@ GameObject:
   - component: {fileID: 1028616535548894577}
   - component: {fileID: 1487262657789241670}
   - component: {fileID: 6398006049910440295}
+  - component: {fileID: 293835840335491533}
   m_Layer: 5
   m_Name: Inventary
   m_TagString: Untagged
@@ -969,6 +970,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &293835840335491533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6892791196829320016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a19cfba8db4ef1bff9f99b4e7712fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotPrefab: {fileID: 4769179196173807019, guid: b381574bcb74e0c498e60d04f8953bf9, type: 3}
+  onUseBtnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDropBtnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onEquipBtnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8909373762369949624
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +1004,7 @@ GameObject:
   - component: {fileID: 1877721389747707793}
   - component: {fileID: 549978799205764003}
   m_Layer: 5
-  m_Name: UseLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1118,7 +1141,7 @@ GameObject:
   - component: {fileID: 4096560645003504538}
   - component: {fileID: 6119111153771509430}
   m_Layer: 5
-  m_Name: DropButton
+  m_Name: DropBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

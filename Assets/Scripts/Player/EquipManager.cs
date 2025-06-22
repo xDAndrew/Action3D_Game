@@ -1,3 +1,4 @@
+using System;
 using Items;
 using UnityEngine;
 
@@ -7,10 +8,13 @@ namespace Player
     {
         public Transform equipParent;
         public Equip currentEquip;
-        public void Equip(ItemModel equipItem)
+        
+        public Guid CurrentEquipGuid { get; set; }
+        
+        public void Equip(PickUpModel equipPickUp)
         {
             Unequip();
-            currentEquip = Instantiate(equipItem.equipmentPrefab, equipParent).GetComponent<Equip>();
+            currentEquip = Instantiate(equipPickUp.equipmentPrefab, equipParent).GetComponent<Equip>();
         }
 
         public void Unequip()
