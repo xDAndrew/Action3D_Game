@@ -20,7 +20,7 @@ Write-Host "New tag: $newTag"
 
 # === 3. Create and push the new tag ===
 git tag $newTag
-#git push origin $newTag
+git push origin $newTag
 Write-Host "Tag $newTag created"
 
 # === 4. Build project using Unity CLI ===
