@@ -32,9 +32,6 @@ namespace Core.InventoryService
             {
                 return false;
             }
-            
-            emptySlot.Item = item;
-            emptySlot.Amount++;
 
             return true;
         }
@@ -46,14 +43,39 @@ namespace Core.InventoryService
             {
                 return false;
             }
+
+            return true;
+        }
+
+        public void AddItem(PickUpModel item)
+        {
+            if (item is null)
+            {
+                return;
+            }
+            
+            var emptySlot = _storage.FirstOrDefault(x => x.Item?.id == item.id && item.stackable && x.Amount < item.maxStackAmount) 
+                ?? _storage.FirstOrDefault(x => x.Item is null);
+                
+            if (emptySlot is null) return;
+                
+            emptySlot.Item = item;
+            emptySlot.Amount++;
+        }
+
+        public void RemoveItem(Guid index, int amount)
+        {
+            var slot = _storage.FirstOrDefault(x => x.Id == index);
+            if (slot?.Item is null || slot.Amount < amount)
+            {
+                return;
+            }
             
             slot.Amount -= amount;
             if (slot.Amount == 0)
             {
                 slot.Item = null;
             }
-
-            return true;
         }
 
         public IReadOnlyList<InventorySlot> GetItems()

@@ -20,6 +20,8 @@ namespace Player
         
         private IAppliable _needs;
         private EquipManager _equipManager;
+
+        private bool _inventoryLocked;
         
         private void Awake()
         {
@@ -40,7 +42,7 @@ namespace Player
 
         public void OnInventoryOpen(InputAction.CallbackContext context)
         {
-            if (!context.started)
+            if (!context.started || _inventoryLocked)
             {
                 return;
             }
@@ -63,10 +65,21 @@ namespace Player
         public bool TryPickUpItem(PickUpModel item)
         {
             var canPickUp = _playerInventory.TryAddItem(item);
+            if (canPickUp)
+            {
+                _playerInventory.AddItem(item);
+            }
             _inventoryUI.UpdateInventory();
             return canPickUp;
         }
+
+        public Inventory GetPlayerInventory() => _playerInventory;
         
+        public void LockInventory(bool locked)
+        {
+            _inventoryLocked = locked;
+        }
+
         private void OnEquipBtnClick(Guid slotId)
         {
             Debug.Log($"Equip {slotId}");
@@ -94,6 +107,12 @@ namespace Player
             var slot = _playerInventory.GetItems().FirstOrDefault(x => x.Id == slotId);
             if (slot?.Item is not null)
             {
+                var canRemove = _playerInventory.TryRemoveItem(slotId, 1);
+                if (!canRemove)
+                {
+                    return;
+                }
+                
                 var spawnOffset = transform.forward * 1.0f + transform.up * 1f;
                 var spawnPosition = transform.position + spawnOffset;
                 
@@ -107,7 +126,7 @@ namespace Player
                     _equipManager.CurrentEquipGuid = Guid.Empty;
                 }
                 
-                _playerInventory.TryRemoveItem(slotId, 1);
+                _playerInventory.RemoveItem(slotId, 1);
             }
         }
         
@@ -117,11 +136,17 @@ namespace Player
             var slot = _playerInventory.GetItems().FirstOrDefault(x => x.Id == slotId);
             if (slot?.Item is not null)
             {
+                var canRemove = _playerInventory.TryRemoveItem(slotId, 1);
+                if (!canRemove)
+                {
+                    return;
+                }
+                
                 foreach (var effect in slot.Item.applyEffects)
                 {
                     _needs.Apply(effect);
                 }
-                _playerInventory.TryRemoveItem(slotId, 1);
+                _playerInventory.RemoveItem(slotId, 1);
             }
         }
     }

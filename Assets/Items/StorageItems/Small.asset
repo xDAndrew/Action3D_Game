@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Small
   m_EditorClassIdentifier: 
   displayName: small box
-  slotsCount: 4
+  slotsCount: 6
