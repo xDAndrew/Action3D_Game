@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 
 public class StorageHUD : MonoBehaviour
 {
@@ -95,6 +96,8 @@ public class StorageHUD : MonoBehaviour
                 _storageInventorySlots.Add(newSlot);
                 index++;
             }
+            
+            UpdateHUD();
         };
     }
 
@@ -119,6 +122,8 @@ public class StorageHUD : MonoBehaviour
             _storageInventorySlots[index].SetSlot(slot);
             index++;
         }
+
+        UpdateArrows();
     }
 
     private void ResetSelect()
@@ -173,5 +178,30 @@ public class StorageHUD : MonoBehaviour
         _playerInventory.RemoveItem(slot.GetInventorySlot().Id, 1);
         
         UpdateHUD();
+    }
+
+    private void UpdateArrows()
+    {
+        var leftBtn = transform.Find("LeftBtn").GetComponent<Image>();
+        var rightBtn = transform.Find("RightBtn").GetComponent<Image>();
+        
+        if (_selectSlot?.GetInventorySlot()?.Item is null)
+        {
+            rightBtn.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            leftBtn.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            return;
+        }
+        
+        var slot = _playerInventorySlots.FirstOrDefault(x => x.GetInventorySlot().Id == _selectSlot.GetInventorySlot().Id);
+        if (slot is not null)
+        {
+            rightBtn.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            leftBtn.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+        }
+        else
+        {
+            rightBtn.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            leftBtn.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
     }
 }
