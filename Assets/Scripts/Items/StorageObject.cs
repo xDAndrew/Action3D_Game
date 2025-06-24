@@ -1,5 +1,6 @@
 using Core.InventoryService;
 using Items.Interfaces;
+using Player;
 using Player.Interfaces;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -15,6 +16,7 @@ namespace Items
         private Inventory _storage;
         
         private IInventoryController _inventoryController;
+        private EquipManager _equipManager;
         
         private const string StorageHUDPrefabName = "BoxSwapHUD";
 
@@ -34,6 +36,8 @@ namespace Items
             _inventoryController.LockInventory(true);
             var playerInventory = _inventoryController.GetPlayerInventory();
             
+            _equipManager = interactingObject.GetComponent<EquipManager>();
+            
             Addressables.InstantiateAsync(StorageHUDPrefabName).Completed += handle =>
             {
                 if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -43,6 +47,8 @@ namespace Items
                     var mainWindow = _hudInstance.transform.Find("MainWindow").GetComponent<StorageHUD>();
                     mainWindow.SetInventory(playerInventory, _storage);
                     mainWindow.onClickCloseBtn.AddListener(OnClickCloseBtn);
+                    
+                    mainWindow.onItemMove.AddListener(slot => _equipManager?.Unequip(slot));
                     
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;

@@ -86,16 +86,14 @@ namespace Player
             var slot = _playerInventory.GetItems().FirstOrDefault(x => x.Id == slotId);
             if (slot?.Item is not null)
             {
-                if (_equipManager.CurrentEquipGuid == slotId)
+                if (slot.IsEquip)
                 {
-                    _equipManager.Unequip();
-                    _equipManager.CurrentEquipGuid = Guid.Empty;
-                    Debug.Log($"Unequip {_equipManager.CurrentEquipGuid}");
+                    _equipManager.Unequip(slot);
+                    Debug.Log($"Unequip {slotId}");
                 }
                 else
                 {
-                    _equipManager.Equip(slot.Item);
-                    _equipManager.CurrentEquipGuid = slotId;
+                    _equipManager.Equip(slot);
                     Debug.Log($"Equip {slotId}");
                 }
             }
@@ -120,10 +118,9 @@ namespace Player
                 var rb = obj.GetComponent<Rigidbody>();
                 rb?.AddForce((transform.forward + transform.up * 0.2f) * 10f, ForceMode.Impulse);
 
-                if (slotId == _equipManager.CurrentEquipGuid)
+                if (slot.IsEquip)
                 {
-                    _equipManager.Unequip();
-                    _equipManager.CurrentEquipGuid = Guid.Empty;
+                    _equipManager.Unequip(slot);
                 }
                 
                 _playerInventory.RemoveItem(slotId, 1);

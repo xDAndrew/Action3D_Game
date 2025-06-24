@@ -13,7 +13,6 @@ namespace UI.InventoryUI
         private InventorySlot _inventorySlot;
         
         private bool _isSelected;
-        private bool _isEquip;
 
         public readonly UnityEvent<Guid> OnSlotClick = new();
         
@@ -26,12 +25,6 @@ namespace UI.InventoryUI
         public void SetSelect(bool isSelected)
         {
             _isSelected = isSelected;
-            UpdateSlot();
-        }
-
-        public void SetEquip(bool isEquip)
-        {
-            _isEquip = isEquip;
             UpdateSlot();
         }
 
@@ -61,7 +54,7 @@ namespace UI.InventoryUI
             }
             
             selectedBorder.gameObject.SetActive(_isSelected);
-            equipBorder.gameObject.SetActive(_isEquip);
+            equipBorder.gameObject.SetActive(_inventorySlot.IsEquip);
         }
 
         public void OnPointerClick(PointerEventData eventData)

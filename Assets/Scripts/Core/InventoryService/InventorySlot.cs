@@ -10,5 +10,7 @@ namespace Core.InventoryService
         public PickUpModel Item { get; set; }
         
         public int Amount { get; set; }
+        
+        public bool IsEquip { get; set; }
     }
 }

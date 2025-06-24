@@ -1,5 +1,4 @@
-using System;
-using Items;
+using Core.InventoryService;
 using UnityEngine;
 
 namespace Player
@@ -9,23 +8,23 @@ namespace Player
         public Transform equipParent;
         public Equip currentEquip;
         
-        public Guid CurrentEquipGuid { get; set; }
-        
-        public void Equip(PickUpModel equipPickUp)
+        public void Equip(InventorySlot slot)
         {
-            Unequip();
-            currentEquip = Instantiate(equipPickUp.equipmentPrefab, equipParent).GetComponent<Equip>();
+            Unequip(slot);
+            currentEquip = Instantiate(slot.Item.equipmentPrefab, equipParent).GetComponent<Equip>();
+            slot.IsEquip = true;
         }
 
-        public void Unequip()
+        public void Unequip(InventorySlot slot)
         {
-            if (currentEquip is null)
+            if (currentEquip is null || slot.IsEquip == false)
             {
                 return;
             }
         
             Destroy(currentEquip.gameObject);
             currentEquip = null;
+            slot.IsEquip = false;
         }
     }
 }

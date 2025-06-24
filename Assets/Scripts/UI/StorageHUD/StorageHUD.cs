@@ -13,7 +13,8 @@ using UnityEngine.UI;
 public class StorageHUD : MonoBehaviour
 {
     public UnityEvent onClickCloseBtn;
-
+    public UnityEvent<InventorySlot> onItemMove;
+    
     private Inventory _playerInventory;
     private Inventory _storageInventory;
 
@@ -174,6 +175,7 @@ public class StorageHUD : MonoBehaviour
         var canAdd = _storageInventory.TryAddItem(slot.GetInventorySlot().Item);
         if (!canAdd || !canRemove) return;
         
+        onItemMove?.Invoke(slot.GetInventorySlot());
         _storageInventory.AddItem(slot.GetInventorySlot().Item);
         _playerInventory.RemoveItem(slot.GetInventorySlot().Id, 1);
         

@@ -22,7 +22,6 @@ namespace UI.InventoryUI
 
         private Inventory _inventory;
         private ItemSlot _selectSlot;
-        private ItemSlot _equipSlot;
         
         private ClickableImage _equipBtn;
         private ClickableImage _useBtn;
@@ -39,25 +38,9 @@ namespace UI.InventoryUI
             {
                 if (_selectSlot is not null)
                 {
-                    foreach (var itemSlot in _itemSlots)
-                    {
-                        itemSlot.SetEquip(false);
-                    }
-                    
-                    if (_selectSlot == _equipSlot)
-                    {
-                        _equipSlot.SetEquip(false);
-                        _equipSlot = null;
-                    }
-                    else
-                    {
-                        _equipSlot = _selectSlot;
-                        _equipSlot.SetEquip(true);
-                    }
-                    
                     onEquipBtnClick?.Invoke(_selectSlot.GetInventorySlot().Id);
-                    UpdateInventory();
                 }
+                UpdateInventory();
             });
             
             _useBtn = transform.Find("UseBtn").GetComponent<ClickableImage>();
@@ -75,12 +58,6 @@ namespace UI.InventoryUI
             {
                 if (_selectSlot is not null)
                 {
-                    if (_selectSlot == _equipSlot)
-                    {
-                        _equipSlot.SetEquip(false);
-                        _equipSlot = null;
-                    }
-                    
                     onDropBtnClick?.Invoke(_selectSlot.GetInventorySlot().Id);
                 }
                 UpdateInventory();
@@ -155,7 +132,7 @@ namespace UI.InventoryUI
                     case ItemType.Equipment:
                         useBtn.gameObject.SetActive(false);
                         equipBtn.gameObject.SetActive(true);
-                        _equipBtnLabel.text = _selectSlot == _equipSlot ? "Unequip" : "Equip";;
+                        _equipBtnLabel.text = _selectSlot.GetInventorySlot().IsEquip ? "Unequip" : "Equip";
                         break;
                     case ItemType.Consumable:
                         useBtn.gameObject.SetActive(true);
