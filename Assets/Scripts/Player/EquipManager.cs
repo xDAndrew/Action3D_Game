@@ -1,5 +1,6 @@
 using Core.InventoryService;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -7,6 +8,22 @@ namespace Player
     {
         public Transform equipParent;
         public Equip currentEquip;
+
+        public void OnAttackInput(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                currentEquip.OnAttackInput();
+            }
+        }
+        
+        public void OnAltAttackInput(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                currentEquip.OnAltAttackInput();
+            }
+        }
         
         public void Equip(InventorySlot slot)
         {

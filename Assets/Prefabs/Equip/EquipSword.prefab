@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5673719397432589145}
-  - component: {fileID: 4974262252674646770}
+  - component: {fileID: 1488239758156221463}
+  - component: {fileID: 5261822623380873578}
   m_Layer: 8
   m_Name: EquipSword
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 7279022901727857545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4974262252674646770
+--- !u!114 &1488239758156221463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +43,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1990367445188676194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d1bec242cb89e4f8da859ee31e3383, type: 3}
+  m_Script: {fileID: 11500000, guid: 54db7df5fd5b403ea327684900a779d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackRate: 0
+  AttackDistance: 0
+  Attacking: 0
+  doesDealDamage: 0
+  damage: 0
+  doesGathering: 0
+  gathering: 0
+--- !u!95 &5261822623380873578
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990367445188676194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 147a13ee7192d0747b4ff82a255af837, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6191986620146840003
 GameObject:
   m_ObjectHideFlags: 0
