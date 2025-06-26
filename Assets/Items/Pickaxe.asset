@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 794dd17fcc649d242a30f6c87f7c29c9, type: 3}
-  m_Name: Axe
+  m_Name: Pickaxe
   m_EditorClassIdentifier: 
-  id: dd1d9cee-a6f8-4a1e-95e1-5ddf58b67929
-  displayName: Axe
-  description: Axe for cuting
+  id: 4b6c1761-d9b4-4927-91a2-575000a757f2
+  displayName: Pickaxe
+  description: Pickaxe for gathering stones
   type: 1
-  icon: {fileID: 21300000, guid: 431d3db8420fa0b4fbc0ebe9c9b0e4a9, type: 3}
-  prefab: {fileID: 2033180916739281006, guid: 5fa1c07dc32f73448a016371193e70f9, type: 3}
+  icon: {fileID: 21300000, guid: e3e58829c673b5c4b98961c8bca0df99, type: 3}
+  prefab: {fileID: 5165967618399800214, guid: 51f2f163a07b00e499828a8c44518008, type: 3}
   stackable: 0
   maxStackAmount: 0
   applyEffects: []
-  equipmentPrefab: {fileID: 7478040042725753480, guid: d433ee3709f37db4786e1ec1107dc75a, type: 3}
+  equipmentPrefab: {fileID: 6735197733429684358, guid: bac4b7b6be40f9a47921c454b707a773, type: 3}

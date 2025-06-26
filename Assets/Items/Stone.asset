@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794dd17fcc649d242a30f6c87f7c29c9, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
+  id: 288dc64f-5caf-466f-a60b-d7c8a6303cc3
   displayName: Stone
   description: Building material
   type: 0
   icon: {fileID: 21300000, guid: f7d15bafcb771bf4aae1bcdddfe8e8e3, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 6206904041948464601, guid: 1931f2eaaad0318478b3da6c343436cb, type: 3}
   stackable: 1
   maxStackAmount: 30
+  applyEffects: []
+  equipmentPrefab: {fileID: 0}
