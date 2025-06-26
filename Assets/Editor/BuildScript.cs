@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace BuildScript
+namespace Editor
 {
     public class BuildScript
     {
