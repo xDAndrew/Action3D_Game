@@ -35,7 +35,7 @@ namespace Core.ResourceObjectService
             {
                 if (!RollChance(pickUpModel.Chance)) continue;
                 
-                var spawnPoint = transform.position.y + index * 5;
+                var spawnPoint = transform.position.y + index * 0.4f;
                 Instantiate(pickUpModel.Resource.prefab, new Vector3(transform.position.x, spawnPoint, transform.position.z), Quaternion.identity);
                 index++;
             }

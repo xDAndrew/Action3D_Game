@@ -11,7 +11,7 @@ namespace Player
 
         public void OnAttackInput(InputAction.CallbackContext context)
         {
-            if (context.performed && currentEquip is not null)
+            if (context.performed && currentEquip is not null && Cursor.lockState == CursorLockMode.Locked)
             {
                 currentEquip.OnAttackInput();
             }
@@ -19,7 +19,7 @@ namespace Player
         
         public void OnAltAttackInput(InputAction.CallbackContext context)
         {
-            if (context.performed && currentEquip is not null)
+            if (context.performed && currentEquip is not null && Cursor.lockState == CursorLockMode.Locked)
             {
                 currentEquip.OnAltAttackInput();
             }

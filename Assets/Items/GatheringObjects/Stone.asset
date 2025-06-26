@@ -15,6 +15,6 @@ MonoBehaviour:
   HitPoints: 100
   ResourceList:
   - Resource: {fileID: 11400000, guid: 62d74bd9a8c17e54380a8f2f394c4766, type: 2}
-    Chance: 80
+    Chance: 0.8
   - Resource: {fileID: 11400000, guid: 62d74bd9a8c17e54380a8f2f394c4766, type: 2}
-    Chance: 80
+    Chance: 0.8
