@@ -7,7 +7,7 @@ namespace Editor
     {
         public static void BuildDebug()
         {
-            const string path = "D:/Builds/Debug/Game.exe";
+            const string path = "D:/Builds/Game.exe";
             var options = new BuildPlayerOptions
             {
                 scenes = new[] { "Assets/Scenes/Main.unity" },
