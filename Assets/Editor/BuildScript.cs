@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 namespace Editor
 {
@@ -6,14 +7,16 @@ namespace Editor
     {
         public static void BuildDebug()
         {
-            var buildPlayerOptions = new BuildPlayerOptions
+            const string path = "D:/Builds/Debug/Game.exe";
+            var options = new BuildPlayerOptions
             {
                 scenes = new[] { "Assets/Scenes/Main.unity" },
-                locationPathName = "D:/Builds/Debug/Game.exe",
+                locationPathName = path,
                 target = BuildTarget.StandaloneWindows64
             };
 
-            BuildPipeline.BuildPlayer(buildPlayerOptions);
+            var report = BuildPipeline.BuildPlayer(options);
+            Debug.Log("Build result: " + report.summary.result);
         }
     }
 }
