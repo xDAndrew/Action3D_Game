@@ -45,7 +45,7 @@ Start-Process -FilePath "$unityPath" -ArgumentList @(
     "-nographics",
     "-quit",
     "-projectPath", "`"$PSScriptRoot`"",
-    "-buildWindowsPlayer", "`"$exePath`"",
+    "-executeMethod", "BuildScript.BuildDebug",
     "-logFile", "`"$logFile`""
 ) -Wait
 
