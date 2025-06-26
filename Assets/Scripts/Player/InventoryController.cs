@@ -93,6 +93,14 @@ namespace Player
                 }
                 else
                 {
+                    foreach (var item in _playerInventory.GetItems())
+                    {
+                        if (item.IsEquip)
+                        {
+                            _equipManager.Unequip(item);
+                        }
+                    }
+                    
                     _equipManager.Equip(slot);
                     Debug.Log($"Equip {slotId}");
                 }
