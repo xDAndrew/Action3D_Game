@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Core.ResourceObjectService;
+using Data.GameResources;
 using UnityEngine;
 
 namespace Player
@@ -16,6 +19,7 @@ namespace Player
         [Header("Gathering")]
         public bool doesGathering;
         public int gathering;
+        public GatheringObjectData gatheringObject;
 
         //components
         private Animator _animator;
@@ -43,20 +47,19 @@ namespace Player
 
         public void OnHit()
         {
-            if (doesGathering)
+            if (!doesGathering || gatheringObject is null) return;
+            
+            var ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+            if (Physics.Raycast(ray, out var hit, attackDistance))
             {
-                var ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-                if (Physics.Raycast(ray, out var hit, attackDistance))
-                {
-                    var collectableObject = hit.collider?.gameObject.GetComponent<IGatherable>();
-                    if (collectableObject is null) return;
-                    collectableObject.TakeGathering(gathering);
-                    Debug.Log("Gathering something");
-                }
-                else
-                {
-                    Debug.Log("Missing Gathering");
-                }
+                var collectableObject = hit.collider?.gameObject.GetComponent<IGatherable>();
+                if (collectableObject is null) return;
+                collectableObject.TakeGathering(gatheringObject.Id, gathering, hit.point, hit.normal);
+                Debug.Log("Gathering something");
+            }
+            else
+            {
+                Debug.Log("Missing Gathering");
             }
         }
     }

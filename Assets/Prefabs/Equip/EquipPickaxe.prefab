@@ -53,6 +53,7 @@ MonoBehaviour:
   damage: 0
   doesGathering: 1
   gathering: 25
+  gatheringObject: {fileID: 11400000, guid: 53d5f12d992b8f94b9a4a577dd9c62da, type: 2}
 --- !u!95 &8209609133963865294
 Animator:
   serializedVersion: 7

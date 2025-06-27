@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bf10e3008f4b348bb3069c20c9d51a, type: 3}
   m_Name: Tree
   m_EditorClassIdentifier: 
-  HitPoints: 100
-  ResourceList:
-  - Resource: {fileID: 11400000, guid: 472707d433679c743a88e193e292f329, type: 2}
-    Chance: 0.8
-  - Resource: {fileID: 11400000, guid: 472707d433679c743a88e193e292f329, type: 2}
-    Chance: 0.8
-  - Resource: {fileID: 11400000, guid: 3f338a5a20147a94fb9c71fe2ac16c38, type: 2}
-    Chance: 0.4
+  hitPoints: 150
+  resourceList:
+  - resource: {fileID: 11400000, guid: 472707d433679c743a88e193e292f329, type: 2}
+    chance: 0.8
+  - resource: {fileID: 11400000, guid: 472707d433679c743a88e193e292f329, type: 2}
+    chance: 0.5
+  - resource: {fileID: 11400000, guid: 3f338a5a20147a94fb9c71fe2ac16c38, type: 2}
+    chance: 0.4
