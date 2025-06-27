@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resource: {fileID: 11400000, guid: b5763550abb2ce541ab2c53b01e2a489, type: 2}
-  hitParticle: {fileID: 1014287166460717834, guid: 795877917b768ba46a0fe7b361b1c496, type: 3}
+  hitParticle: {fileID: 4322726372454376247, guid: 4a3c53253494b454283f77f5b3079803, type: 3}
   toolClip: {fileID: 8300000, guid: 4a2e85c642bf7ef45b5077fd7a81dcad, type: 3}
   brokenClip: {fileID: 8300000, guid: fc78918e4fec03e48b16415933ace775, type: 3}
 --- !u!64 &6126094102048496749

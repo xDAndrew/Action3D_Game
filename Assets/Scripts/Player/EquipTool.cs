@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Core.ResourceObjectService;
 using Data.GameResources;
 using UnityEngine;
@@ -31,6 +29,7 @@ namespace Player
             _camera = Camera.main;
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public override void OnAttackInput()
         {
             if (attacking) return;
