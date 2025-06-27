@@ -1,3 +1,4 @@
+using System.Collections;
 using Core.InventoryService;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,11 +10,27 @@ namespace Player
         public Transform equipParent;
         public Equip currentEquip;
 
+        private Coroutine _attackCoroutine;
+        
         public void OnAttackInput(InputAction.CallbackContext context)
         {
             if (context.performed && currentEquip is not null && Cursor.lockState == CursorLockMode.Locked)
             {
                 currentEquip.OnAttackInput();
+            }
+            
+            if (currentEquip is null || Cursor.lockState != CursorLockMode.Locked)
+                return;
+
+            if (context.started)
+            {
+                _attackCoroutine = StartCoroutine(AttackLoop());
+            }
+            else if (context.canceled)
+            {
+                if (_attackCoroutine == null) return;
+                StopCoroutine(_attackCoroutine);
+                _attackCoroutine = null;
             }
         }
         
@@ -42,6 +59,15 @@ namespace Player
             Destroy(currentEquip.gameObject);
             currentEquip = null;
             slot.IsEquip = false;
+        }
+        
+        private IEnumerator AttackLoop()
+        {
+            while (true)
+            {
+                currentEquip.OnAttackInput();
+                yield return new WaitForSeconds(0.4f);
+            }
         }
     }
 }
