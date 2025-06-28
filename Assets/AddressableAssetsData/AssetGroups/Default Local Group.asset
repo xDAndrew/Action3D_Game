@@ -21,11 +21,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b091d595626065d42a74493af998f169
+    m_Address: ItemRecipe
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b381574bcb74e0c498e60d04f8953bf9
     m_Address: InventorySlotUI
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb484f0a1847d9743b3446db7cacd8b3
+    m_Address: RecipeCost
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcc4e70cb2553c146be81e8fd9b6a308
+    m_Address: CraftHUD
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 924341746d530f64884968edd01699a9, type: 2}

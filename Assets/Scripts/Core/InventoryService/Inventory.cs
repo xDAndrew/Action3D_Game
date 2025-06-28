@@ -78,6 +78,12 @@ namespace Core.InventoryService
             }
         }
 
+        public bool IsItemExist(string index, int amount)
+        {
+            var itemsCount = _storage.Sum(x => x?.Item?.id == index ? x.Amount : 0);
+            return itemsCount >= amount;
+        }
+        
         public IReadOnlyList<InventorySlot> GetItems()
         {
             return _storage;

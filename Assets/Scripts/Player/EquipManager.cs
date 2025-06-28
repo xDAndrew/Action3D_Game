@@ -14,11 +14,6 @@ namespace Player
         
         public void OnAttackInput(InputAction.CallbackContext context)
         {
-            if (context.performed && currentEquip is not null && Cursor.lockState == CursorLockMode.Locked)
-            {
-                currentEquip.OnAttackInput();
-            }
-            
             if (currentEquip is null || Cursor.lockState != CursorLockMode.Locked)
                 return;
 
