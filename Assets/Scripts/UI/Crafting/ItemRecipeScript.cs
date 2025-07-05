@@ -5,7 +5,6 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Crafting

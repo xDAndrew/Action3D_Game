@@ -1,12 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Core.InventoryService;
 using Data.Building;
-using Data.Crafting;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace UI.Building
 {

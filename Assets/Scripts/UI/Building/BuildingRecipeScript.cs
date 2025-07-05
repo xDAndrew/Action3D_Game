@@ -1,13 +1,5 @@
-using Data.Building;
-using Data.Crafting;
-using TMPro;
-using UI.Crafting;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.UI;
 
 namespace UI.Building
 {
