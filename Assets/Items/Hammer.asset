@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794dd17fcc649d242a30f6c87f7c29c9, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: 
+  id: 1f1e19fc-ad54-4343-b1ca-9dd48c3ea0aa
+  displayName: Build Hammer
+  description: Take for build some shit
+  type: 1
+  icon: {fileID: 21300000, guid: 278ff7e74c1221a409c93c3d75ceaf38, type: 3}
+  prefab: {fileID: 6195492811284134716, guid: 786685a244565294ea2b6135a5004d86, type: 3}
+  stackable: 0
+  maxStackAmount: 0
+  applyEffects: []
+  equipmentPrefab: {fileID: 7571978299144880989, guid: 3e3a36d422032644b8d6f2473d929316, type: 3}
