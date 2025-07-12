@@ -52,12 +52,6 @@ namespace Items
                     
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
-                    
-                    Debug.Log("Префаб успешно загружен и инстанцирован!");
-                }
-                else
-                {
-                    Debug.LogError($"Ошибка при загрузке префаба {StorageHUDPrefabName}");
                 }
             };
         }

@@ -1,7 +1,6 @@
-namespace Buildings
+namespace Player
 {
     public class BuildingController
     {
-        
     }
 }

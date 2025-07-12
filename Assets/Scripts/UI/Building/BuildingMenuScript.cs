@@ -1,16 +1,22 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Core.InventoryService;
 using Data.Building;
+using UI.Crafting;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace UI.Building
 {
-    public class BuildingWindowScript : MonoBehaviour
+    public class BuildingMenuScript : MonoBehaviour
     {
-        public UnityEvent onCloseWindow;
+        /*public UnityEvent onCloseWindow;
         public List<BuildingRecipeData> recipeList = new();
         
-        /*private Inventory _playerInventory;
+        private Inventory _playerInventory;
         private ItemRecipeScript _selectedRecipe;
 
         private const string ItemRecipe = "ItemRecipe";
