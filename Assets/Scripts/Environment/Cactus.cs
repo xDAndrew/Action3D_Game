@@ -10,20 +10,16 @@ namespace Environment
         public int damage;
         public float damageRate;
 
-        private readonly List<IDamageable> _thingsToDamage = new();
+        private Coroutine _coroutine;
+        private readonly List<IDamageable> _damageableObjectList = new();
 
-        private void Start()
-        {
-            StartCoroutine(DealDamage());
-        }
-    
         private IEnumerator DealDamage()
         {
             while (true)
             {
-                foreach (var thing in _thingsToDamage)
+                foreach (var damageableObject in _damageableObjectList)
                 {
-                    thing.TakeDamage(damage);
+                    damageableObject.TakeDamage(damage);
                 }
             
                 yield return new WaitForSeconds(damageRate);
@@ -32,19 +28,35 @@ namespace Environment
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.GetComponent<IDamageable>() is not null)
+            if (!other.gameObject.TryGetComponent<IDamageable>(out var damageableObject))
             {
-                _thingsToDamage.Add(other.gameObject.GetComponent<IDamageable>());
-            } 
+                return;
+            }
+            
+            _damageableObjectList.Add(damageableObject);
+            
+            if (_damageableObjectList.Count > 0 && _coroutine == null)
+            {
+                _coroutine = StartCoroutine(DealDamage());
+            }
         }
         
-        // Stop attack
         private void OnCollisionExit(Collision other)
         {
-            if (other.gameObject.GetComponent<IDamageable>() is not null)
+            if (!other.gameObject.TryGetComponent<IDamageable>(out var damageableObject))
             {
-                _thingsToDamage.Remove(other.gameObject.GetComponent<IDamageable>());
-            } 
+                return;
+            }
+            
+            _damageableObjectList.Remove(damageableObject);
+
+            if (_damageableObjectList.Count > 0 || _coroutine == null)
+            {
+                return;
+            }
+            
+            StopCoroutine(_coroutine);
+            _coroutine = null;
         }
     }
 }
