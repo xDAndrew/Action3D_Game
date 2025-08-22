@@ -77,6 +77,21 @@ namespace Core.InventoryService
                 slot.Item = null;
             }
         }
+        
+        public void RemoveItemByItemIndex(Guid index, int amount)
+        {
+            var slot = _storage.FirstOrDefault(x => x.Item?.id == index.ToString());
+            if (slot?.Item is null || slot.Amount < amount)
+            {
+                return;
+            }
+            
+            slot.Amount -= amount;
+            if (slot.Amount == 0)
+            {
+                slot.Item = null;
+            }
+        }
 
         public bool IsItemExist(string index, int amount)
         {

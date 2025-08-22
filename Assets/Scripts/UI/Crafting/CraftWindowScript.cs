@@ -100,8 +100,9 @@ namespace UI.Crafting
 
             foreach (var recipe in _selectedRecipe.recipeData.craftingRecipe)
             {
-                _playerInventory.RemoveItem(Guid.Parse(recipe.resource.id), recipe.amount);
+                _playerInventory.RemoveItemByItemIndex(Guid.Parse(recipe.resource.id), recipe.amount);
             }
+            
             _playerInventory.AddItem(_selectedRecipe.recipeData.craftItem);
         }
         

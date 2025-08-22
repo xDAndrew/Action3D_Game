@@ -7,7 +7,8 @@ namespace Items
 {
     public class PickUpObject : MonoBehaviour, IInteractable
     {
-        [FormerlySerializedAs("item")] public PickUpModel pickUp;
+        [FormerlySerializedAs("item")] 
+        public PickUpModel pickUp;
         
         public string GetInteractionPromt()
         {
