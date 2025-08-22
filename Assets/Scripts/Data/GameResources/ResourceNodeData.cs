@@ -7,17 +7,17 @@ namespace Data.GameResources
 {
     [Serializable]
     [CreateAssetMenu(fileName = "GatheringObjectData", menuName = "Scriptable Objects/GatheringObjectData")]
-    public class GatheringObjectData : ScriptableObject
+    public class ResourceNodeData : ScriptableObject
     {
         public readonly Guid Id = Guid.NewGuid();
         
         public float hitPoints;
         
-		public List<SpawnResourceObjectData> resourceList = new();
+		public List<SpawnResourceNode> resourceList = new();
     }
 
     [Serializable]
-    public class SpawnResourceObjectData
+    public class SpawnResourceNode
     {
         public PickUpModel resource;
 

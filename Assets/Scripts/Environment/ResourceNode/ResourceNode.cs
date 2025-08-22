@@ -1,15 +1,16 @@
 using System;
+using Core.AudioSourcePool;
 using Data.GameResources;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Core.ResourceObjectService
+namespace Environment.ResourceNode
 {
     [Serializable]
-    public class GatheringObject : MonoBehaviour, IGatherable
+    public class ResourceNode : MonoBehaviour
     {
-        public GatheringObjectData resource;
-        
+        public ResourceNodeData resource;
         public GameObject hitParticle;
         
         [Header("Audio")]
@@ -17,21 +18,22 @@ namespace Core.ResourceObjectService
         public AudioClip brokenClip;
         
         private float _hitPoints;
-        private AudioSource _audioSource;
+        
+        [Inject]
+        private readonly AudioManager _audioManager;
         
         private void Awake()
         {
             _hitPoints = resource.hitPoints;
-            _audioSource = Camera.main?.GetComponent<AudioSource>();
         }
 
-        public void TakeGathering(Guid toolId, float damage, Vector3 point, Vector3 normal)
+        public void TakeDamage(Guid toolId, float damage, Vector3 point, Vector3 normal)
         {
             if (resource.Id != toolId) return;
 
             if (toolClip is not null)
             {
-                _audioSource?.PlayOneShot(toolClip);
+                _audioManager.PlayOneShotSound(toolClip, gameObject.transform);
             }
 
             if (hitParticle is not null)
@@ -42,19 +44,18 @@ namespace Core.ResourceObjectService
             _hitPoints -= damage;
             if (_hitPoints <= 0)
             {
-                BrokeObject();
+                DestroyResourceNode();
             }
         }
 
-        public void BrokeObject()
+        public void DestroyResourceNode()
         {
             gameObject.SetActive(false);
             
             var index = 0;
             foreach (var pickUpModel in resource.resourceList)
             {
-                if (!RollChance(pickUpModel.chance)) continue;
-                
+                if (Random.value >= pickUpModel.chance) continue;
                 var spawnPoint = transform.position.y + index * 0.4f;
                 Instantiate(pickUpModel.resource.prefab, new Vector3(transform.position.x, spawnPoint, transform.position.z), Quaternion.identity);
                 index++;
@@ -62,24 +63,9 @@ namespace Core.ResourceObjectService
             
             if (brokenClip is not null)
             {
-                _audioSource?.PlayOneShot(brokenClip);
+                _audioManager.PlayOneShotSound(brokenClip, gameObject.transform);
             }
             
-            Invoke(nameof(ItemDestroy), 1);
-        }
-        
-        private static bool RollChance(float chance)
-        {
-            return chance switch
-            {
-                <= 0f => false,
-                >= 1f => true,
-                _ => Random.value < chance
-            };
-        }
-
-        public void ItemDestroy()
-        {
             Destroy(gameObject);
         }
     }

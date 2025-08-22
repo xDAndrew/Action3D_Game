@@ -9,7 +9,6 @@ namespace Data.Building
     {
         public string DisplayName;
         public Sprite Icon;
-        
         public GameObject spawnPrefab;
         public GameObject previewPrefab;
         public List<CraftingRecipe> resourceCost;

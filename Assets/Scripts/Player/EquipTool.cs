@@ -1,6 +1,7 @@
-using Core.ResourceObjectService;
 using Data.GameResources;
+using Environment.ResourceNode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -17,7 +18,7 @@ namespace Player
         [Header("Gathering")]
         public bool doesGathering;
         public int gathering;
-        public GatheringObjectData gatheringObject;
+        [FormerlySerializedAs("gatheringObject")] public ResourceNodeData resourceNode;
 
         //components
         private Animator _animator;
@@ -46,14 +47,14 @@ namespace Player
 
         public void OnHit()
         {
-            if (!doesGathering || gatheringObject is null) return;
+            if (!doesGathering || resourceNode is null) return;
             
             var ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             if (Physics.Raycast(ray, out var hit, attackDistance))
             {
-                var collectableObject = hit.collider?.gameObject.GetComponent<IGatherable>();
+                var collectableObject = hit.collider?.gameObject.GetComponent<ResourceNode>();
                 if (collectableObject is null) return;
-                collectableObject.TakeGathering(gatheringObject.Id, gathering, hit.point, hit.normal);
+                collectableObject.TakeDamage(resourceNode.Id, gathering, hit.point, hit.normal);
                 Debug.Log("Gathering something");
             }
             else
