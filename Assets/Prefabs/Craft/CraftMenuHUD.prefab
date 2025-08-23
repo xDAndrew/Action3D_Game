@@ -687,6 +687,7 @@ MonoBehaviour:
       m_Calls: []
   recipeList:
   - {fileID: 11400000, guid: f921298e5618b0d48a1025e754c24961, type: 2}
+  - {fileID: 11400000, guid: cbf8e8f98640ae04e9746f7c5fb30fba, type: 2}
 --- !u!1 &5584941867724753458
 GameObject:
   m_ObjectHideFlags: 0
